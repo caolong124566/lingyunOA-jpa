@@ -11,26 +11,28 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class HomeController {
+public class HomeController{
     @Autowired
     private UserRepository userRepository;
 
     @RequestMapping("/")
     public String index(Map<String,User> modelMap) {
 
-        User james=new User();
-        james.setAge(23);
-        james.setName("James");
-        userRepository.save(james);
-        List<User> users=userRepository.findByName("James");
+        User james = initUserJames();
         modelMap.put("user",james);
         userRepository.jamesAddFirstName();
         List<User> all=userRepository.findAllUsersCustom();
 
-        for (User user:all){
-            System.out.println("find user:"+user.getName());
-        }
-        return "home";
+        return "forward:/dist/index.html";
     }
-    
+
+    private User initUserJames() {
+        User james=new User();
+        james.setAge(23);
+        james.setName("James");
+        userRepository.save(james);
+        return james;
+    }
+
+
 }
