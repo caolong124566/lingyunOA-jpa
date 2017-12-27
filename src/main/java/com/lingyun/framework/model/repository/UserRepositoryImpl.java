@@ -11,4 +11,10 @@ public class UserRepositoryImpl {
         System.out.println(update);
         return em.createQuery(update).executeUpdate();
     }
+
+
+//    public List<Member> getMember(){
+//        String SQL = "";
+//        return null;
+//    }
 }

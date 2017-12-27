@@ -5,7 +5,6 @@ import com.lingyun.framework.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.thymeleaf.TemplateEngine;
 
 import java.util.List;
 import java.util.Map;
@@ -15,15 +14,24 @@ public class HomeController{
     @Autowired
     private UserRepository userRepository;
 
+
     @RequestMapping("/")
     public String index(Map<String,User> modelMap) {
-
         User james = initUserJames();
         modelMap.put("user",james);
         userRepository.jamesAddFirstName();
         List<User> all=userRepository.findAllUsersCustom();
-
         return "forward:/dist/index.html";
+    }
+
+    @RequestMapping("/user")
+    public String index1(Map<String,User> modelMap) {
+        User james = initUserJames();
+        modelMap.put("user",james);
+        userRepository.jamesAddFirstName();
+        List<User> all=userRepository.findAllUsersCustom();
+        System.out.println(all);
+        return "forward:/angular/dist/index.html";
     }
 
     private User initUserJames() {
@@ -33,6 +41,4 @@ public class HomeController{
         userRepository.save(james);
         return james;
     }
-
-
 }
