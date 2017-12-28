@@ -16,6 +16,7 @@ import java.util.Map;
 public class HomeController{
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private EmployeeRepository employeeRepository;
     @RequestMapping("/")
@@ -28,17 +29,12 @@ public class HomeController{
 
         return "index";
     }
-    @RequestMapping("/angularUi")
-    public String angularUi(){
-        return "forward:index.html";
-    }
-    private User initUserJames() {
-        User james=new User();
-        james.setAge(23);
-        james.setName("James");
-        userRepository.save(james);
-        return james;
-    }
+    /**
+     * 登陆
+     * @param session
+     * @param employee
+     * @return
+     */
     @RequestMapping("/login")
     public String login(HttpSession session, Employee employee){
         String page="";
@@ -52,5 +48,19 @@ public class HomeController{
 
         }
         return page;
+    }
+
+    @RequestMapping("/attendance")
+    public String attendance(HttpSession session){
+
+
+        return "";
+    }
+    private User initUserJames() {
+        User james=new User();
+        james.setAge(23);
+        james.setName("James");
+        userRepository.save(james);
+        return james;
     }
 }
