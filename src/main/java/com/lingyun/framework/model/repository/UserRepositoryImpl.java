@@ -10,5 +10,5 @@ public class UserRepositoryImpl {
         String update="update User u set u.name='George James' where u.name='James'";
         System.out.println(update);
         return em.createQuery(update).executeUpdate();
-    }
+}
 }
