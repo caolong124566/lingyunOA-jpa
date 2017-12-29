@@ -27,7 +27,7 @@ public class HomeController{
         userRepository.jamesAddFirstName();
         List<User> all=userRepository.findAllUsersCustom();
 
-        return "index";
+        return "forward:/index.html";
     }
     /**
      * 登陆
@@ -44,10 +44,19 @@ public class HomeController{
             session.setAttribute("id",employees.get(0).getId());
         }
         else{
-            page="index";
+            page="home";
 
         }
         return page;
+    }
+
+    /**
+     * angularUI
+     * @return
+     */
+    @RequestMapping("/angularUi")
+    public String angularUi(){
+        return "forward:/index.html";
     }
 
     @RequestMapping("/attendance")
