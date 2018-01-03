@@ -2,7 +2,12 @@ package com.lingyun.framework.model.controller;
 
 import com.lingyun.framework.entity.*;
 import com.lingyun.framework.model.repository.*;
+import com.lingyun.framework.model.service.Servicelmpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +35,9 @@ public class HomeRestController {
 
     @Autowired
     private TaskRepositoryImpl taskRepository1;
+
+    @Autowired
+    private Servicelmpl servicelmpl;
 
 
     @RequestMapping("/users")
@@ -75,41 +83,17 @@ public class HomeRestController {
         taskRepository.save(t);
         taskRepository.save(t1);
 
-        Integer departmentID = employeeRepository.getDepartmentID(id);
-
-        System.out.println(departmentID+"*&^&^*^&^(");
-        Map<String,Object> taskMap = new HashMap<>();
-        //存储任务实体
-        List<PhysicalTask> taskList = new ArrayList<>();
-        List<Integer> tasks = taskRepository1.getTaskID(departmentID);
-        if(tasks.size()==0 || tasks == null){
-            taskMap.put("taskStatus",0);
-            taskMap.put("msg","该部门暂时没有任务。。。");
-            return taskMap;
-        }
-        System.out.println(tasks.size()+"****");
-        for (int ii: tasks
-                ) {
-            Task one = taskRepository.findOne(ii);
-            if(one==null){
-                taskMap.put("taskStatus",0);
-                return taskMap;
-            }
-            taskMap.put("taskStatus",1);
-
-            PhysicalTask physicalTask = new PhysicalTask();
-            physicalTask.setT_id(one.getT_id());
-            physicalTask.setT_theme(one.getT_theme());
-            physicalTask.setEmployeeID(one.getEmployeeID().getId());
-            physicalTask.setT_content(one.getT_content());
-            physicalTask.setT_dateTime(one.getT_dateTime());
-            physicalTask.setEmployeeName(one.getEmployeeID().getName());
-            taskList.add(physicalTask);
-        }
-        taskMap.put("task",taskList);
+        Map<String,Object> taskMap = servicelmpl.responeTask(id);
         return taskMap;
     }
 
+    @RequestMapping("/messageall")
+    public List<MessageRespone> getMessageAll(){
+
+        List<MessageRespone> messageAll = servicelmpl.getMessageAll(0, 5);
+
+        return messageAll;
+    }
 
     @RequestMapping("/employee")
     public Map<String,Object> getEmployee(HttpServletRequest req,String telephone, String password) throws ParseException {

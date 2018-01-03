@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 
 
-@SpringBootApplication(scanBasePackages = {"com.lingyun.framework.model.controller"})
+@SpringBootApplication(scanBasePackages = {"com.lingyun.framework.model.controller","com.lingyun.framework.model.service"})
 @EnableJpaRepositories(basePackages = {"com.lingyun.framework.model.repository"})
 @EnableAutoConfiguration
 @EntityScan(basePackages ={"com.lingyun.framework.entity"})
