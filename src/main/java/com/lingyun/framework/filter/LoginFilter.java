@@ -8,7 +8,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
+<<<<<<< HEAD
 @WebFilter(filterName="loginFilter",urlPatterns="/aa")
+=======
+//@WebFilter(filterName="loginFilter",urlPatterns="/*")
+>>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -17,7 +21,11 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+<<<<<<< HEAD
         String[] str = {"index.html","person","login"};
+=======
+        String[] str = {"index.html","employee"};
+>>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
         HttpServletRequest request1 = (HttpServletRequest) request;
         HttpServletResponse response1 = (HttpServletResponse) response;
         HttpSession session = request1.getSession();
@@ -33,11 +41,19 @@ public class LoginFilter implements Filter {
             }
         }
 
+<<<<<<< HEAD
         if(session.getAttribute("name")!=null && session.getAttribute("password")!=null) {
             chain.doFilter(request1, response1);
         }
         else {
             response1.sendRedirect("forward:index.html");
+=======
+        if(session.getAttribute("telephone")!=null && session.getAttribute("password")!=null) {
+            chain.doFilter(request1, response1);
+        }
+        else {
+            response1.sendRedirect("/angular/dist/index.html");
+>>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
         }
 
 

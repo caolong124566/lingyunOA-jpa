@@ -10,13 +10,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 import java.util.Arrays;
 
-@SpringBootApplication(scanBasePackages = {"com.lingyun.framework.model.controller"})
+
+@SpringBootApplication(scanBasePackages = {"com.lingyun.framework.model.controller","com.lingyun.framework.model.service"})
 @EnableJpaRepositories(basePackages = {"com.lingyun.framework.model.repository"})
 @EnableAutoConfiguration
 @EntityScan(basePackages ={"com.lingyun.framework.entity"})
@@ -26,6 +25,8 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds=new DriverManagerDataSource();
@@ -34,6 +35,7 @@ public class Application {
         ds.setUsername("sa");
         return ds;
     }
+
 //    @Bean
 //    public DataSource dataSource() {
 //        return new EmbeddedDatabaseBuilder()
@@ -56,5 +58,7 @@ public class Application {
 
         };
     }
+
+
 
 }

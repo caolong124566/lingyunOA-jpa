@@ -1,2 +1,5 @@
 /.idea/
-lingyunOA-jpa.iml
+/*.iml
+/gradle/
+gradlew
+gradlew.bat
