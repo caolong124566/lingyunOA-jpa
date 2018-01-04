@@ -1,10 +1,7 @@
 package com.lingyun.framework.model.controller;
 
-<<<<<<< HEAD
 import com.lingyun.framework.entity.Employee;
-=======
 import com.lingyun.framework.entity.Message;
->>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
 import com.lingyun.framework.entity.User;
 import com.lingyun.framework.model.repository.EmployeeRepository;
 import com.lingyun.framework.model.repository.UserRepository;
@@ -12,10 +9,8 @@ import com.lingyun.framework.model.service.Servicelmpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-=======
+
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -27,20 +22,20 @@ public class HomeController{
     private UserRepository userRepository;
 
     @Autowired
-<<<<<<< HEAD
+
     private EmployeeRepository employeeRepository;
-=======
+
     private Servicelmpl servicelmpl;
 
 
->>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
+
     @RequestMapping("/")
     public String index(Map<String,User> modelMap) {
         User james = initUserJames();
         modelMap.put("user",james);
         userRepository.jamesAddFirstName();
         List<User> all=userRepository.findAllUsersCustom();
-<<<<<<< HEAD
+
 
         return "forward:/index.html";
     }
@@ -78,9 +73,7 @@ public class HomeController{
     public String attendance(HttpSession session){
 
 
-        return "";
-    }
-=======
+
         return "forward:/dist/index.html";
     }
 
@@ -94,7 +87,6 @@ public class HomeController{
         return "forward:/angular/dist/index.html";
     }
 
->>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
     private User initUserJames() {
         User james=new User();
         james.setAge(23);
@@ -102,8 +94,6 @@ public class HomeController{
         userRepository.save(james);
         return james;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 3d46f6cd65bd57d1e198eefc4d9f71d5547b43d8
+
 }
