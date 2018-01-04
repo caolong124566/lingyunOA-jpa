@@ -11,6 +11,8 @@ public class Employee {
     private Integer id;//主键   无意义
     @Column(length = 50,nullable = false)
     private String number;//员工编号 唯一值
+
+
     @Column(length = 20,nullable = false)
     private String telephone;//注册时的手机号码 唯一值
     @Column(length = 30,nullable = false)
